@@ -1,11 +1,12 @@
 class RoverProblem
+  CARDINAL_LETTERS = %w{N E S W}.freeze
+  
   def initialize(x, y)
     @limit_x = x
     @limit_y = y
   end
   
   def run_walle_run(x, y, cardinal, action)
-    @cardinals_letter = %w{N E S W}
     @y = y
     @x = x
     @actual_cardinal_letter = cardinal
@@ -16,15 +17,16 @@ class RoverProblem
      move_foward(movement)
      you_shall_not_pass if @x > @limit_x || @y > @limit_y  
     end
-    puts "#{@x} #{@y} #{@actual_cardinal_letter}"
+    puts "#{@x} #{@y} #{@actual_cardinal_letter}" 
   end
 
   private
+
   def which_side(side)
     if side == 'L' 
-      @actual_cardinal_letter = @cardinals_letter[find_cardinal_index_number - 1] 
+      @actual_cardinal_letter = CARDINAL_LETTERS[find_cardinal_index - 1] 
     elsif side == 'R'
-      @actual_cardinal_letter = @cardinals_letter[@actual_cardinal_letter == 'W' ? 0 : find_cardinal_index_number + 1]
+      @actual_cardinal_letter = CARDINAL_LETTERS[@actual_cardinal_letter == 'W' ? 0 : find_cardinal_index + 1]
     end 
   end
 
@@ -42,7 +44,7 @@ class RoverProblem
     @y -= (@y - @limit_y)
   end
 
-  def find_cardinal_index_number
+  def find_cardinal_index
     case @actual_cardinal_letter
       when 'N'
         0
