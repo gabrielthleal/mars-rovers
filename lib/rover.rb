@@ -1,15 +1,17 @@
 class RoverProblem
   CARDINAL_LETTERS = %w[N E S W].freeze
+  attr_accessor :limit_x
+  attr_accessor :limit_y
 
   def initialize(x, y)
-    @limit_x = x
-    @limit_y = y
+    @limit_x = x.to_i
+    @limit_y = y.to_i
   end
   # retorno do problema
   def run_walle_run(x, y, cardinal_position, action)
-    @y = y
-    @x = x
-    @cardinal_position = cardinal_position
+    @y = y.to_i
+    @x = x.to_i
+    @cardinal_position = cardinal_position.to_s.upcase
 
     action.each_char do |mov|
       looking_at = which_side(mov) 
@@ -17,9 +19,8 @@ class RoverProblem
       move_foward(mov, @cardinal_position)
 
       you_shall_not_pass if @x > @limit_x || @y > @limit_y  
-      puts " meio #{@x} #{@y} #{@cardinal_position}" 
     end
-    puts "#{@x} #{@y} #{@cardinal_position}" 
+    "#{@x} #{@y} #{@cardinal_position}" 
   end
 
   private

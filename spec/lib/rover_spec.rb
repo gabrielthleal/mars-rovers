@@ -12,12 +12,12 @@ describe RoverProblem do
       expect(rover.limit_y).to be > 0
     end
 
-    it 'first rover deployed and movimentation is working!' do
+    it 'first rover deployed and expected movimentation is working!' do
       rover = RoverProblem.new(5,5)
-      expect(rover.run_walle_run(1,2,'N','LMLMLMLMM')).to eq('1 2 N')
+      expect(rover.run_walle_run(1,2,'N','LMLMLMLMM')).to eq('1 3 N')
     end
 
-    it 'second rover deployed and movimentation is working!' do
+    it 'second rover deployed and expected movimentation is working!' do
       rover = RoverProblem.new(5,5)
       expect(rover.run_walle_run(3, 3, 'E','MMRMMRMRRM')).to eq('5 1 E')
     end
