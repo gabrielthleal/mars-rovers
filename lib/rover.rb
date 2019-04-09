@@ -7,7 +7,7 @@ class RoverProblem
     @limit_x = x.to_i
     @limit_y = y.to_i
   end
-  # retorno do problema
+
   def run_walle_run(x, y, cardinal_position, action)
     @y = y.to_i
     @x = x.to_i
@@ -23,7 +23,6 @@ class RoverProblem
     "#{@x} #{@y} #{@cardinal_position}" 
   end
 
-  #retorno da letra cardinal
   def which_side(side)
     raise 'invalid value' unless %W[L R M].include?(side.to_s.upcase)
     if side == 'L' 
@@ -42,13 +41,14 @@ class RoverProblem
     end
     {x: @x, y: @y}
   end
-  # retorno do x ou y limitado
-  private
+
+private
+  
   def you_shall_not_pass
     @x -= (@x - @limit_x)
     @y -= (@y - @limit_y)
   end
-  # retorna index
+
   def actual_cardinal_position(actual_position) 
     if actual_position.nil?
       @cardinal_position
