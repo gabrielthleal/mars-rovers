@@ -23,17 +23,32 @@ class RoverProblem
     "#{@x} #{@y} #{@cardinal_position}" 
   end
 
-  private
-#retorno da letra cardinal
+  #retorno da letra cardinal
   def which_side(side)
-    raise 'invalid value' if !['L', 'R', 'M'].include?(side.to_s.upcase)
+    raise 'invalid value' unless %W[L R M].include?(side.to_s.upcase)
     if side == 'L' 
       CARDINAL_LETTERS[find_cardinal_index - 1] 
     elsif side == 'R'
       CARDINAL_LETTERS[@cardinal_position == 'W' ? 0 : find_cardinal_index + 1]
     end 
   end
-
+  
+  def move_foward(step, looking_at)
+    if step == 'M'
+      @y += 1 if looking_at == 'N'  
+      @x += 1 if looking_at == 'E'  
+      @y -= 1 if looking_at == 'S'  
+      @x -= 1 if looking_at == 'W'
+    end
+    {x: @x, y: @y}
+  end
+  # retorno do x ou y limitado
+  private
+  def you_shall_not_pass
+    @x -= (@x - @limit_x)
+    @y -= (@y - @limit_y)
+  end
+  # retorna index
   def actual_cardinal_position(actual_position) 
     if actual_position.nil?
       @cardinal_position
@@ -42,20 +57,6 @@ class RoverProblem
     end
   end
 
-  def move_foward(step, looking_at)
-    if step == 'M'
-      @y += 1 if looking_at == 'N'  
-      @x += 1 if looking_at == 'E'  
-      @y -= 1 if looking_at == 'S'  
-      @x -= 1 if looking_at == 'W'
-    end
-  end
-# retorno do x ou y limitado
-  def you_shall_not_pass
-    @x -= (@x - @limit_x)
-    @y -= (@y - @limit_y)
-  end
-# retorna index
   def find_cardinal_index
     CARDINAL_LETTERS.index(@cardinal_position)
   end 
