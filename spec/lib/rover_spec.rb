@@ -2,11 +2,11 @@ require 'spec_helper'
 require 'rover'
  
 describe RoverProblem do
-  it 'is x more than valid?' do
+  it 'x limit is valid?' do
     rover = RoverProblem.new(5,5)
     expect(rover.limit_x).to be > 0
   end
-  it 'is y more than valid?' do
+  it 'y limit is valid?' do
     rover = RoverProblem.new(5,5)
     expect(rover.limit_y).to be > 0
   end
