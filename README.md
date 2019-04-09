@@ -102,8 +102,8 @@ CARDINAL_LETTERS = %w[N E S W].freeze
   
  4. Esse método recebe a ação de movimento ('M') e pra qual ponto cardeal ele está olhando.
 
-    caso ele esteja olhando 'N' ou 'E' então ele se move em X
-    caso estela 'N' ou 'S' então se move em Y
+    caso ele esteja olhando 'W' ou 'E' então ele se move em X (para trás ou frente)
+    caso estela 'N' ou 'S' então se move em Y (para cima ou para baixo)
  
  ```
   def move_foward(step, looking_at)
