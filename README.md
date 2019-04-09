@@ -45,8 +45,10 @@ Expected Output:
 5 1 E
 
 #Instruções
-1 - gem install rspec
-2 - a partir da raíz da pasta só rodar os testes com: rspec spec/lib/rover_spec.rb
+1. 
+``` gem install rspec ```
+2. a partir da raíz da pasta só rodar os testes com: 
+``` rspec spec/lib/rover_spec.rb ```
 
 #Explicando o que foi feito
 
@@ -59,13 +61,14 @@ CARDINAL_LETTERS = %w[N E S W].freeze
   def initialize(x, y)
     @limit_x = x.to_i
     @limit_y = y.to_i
-  end 
-```
+  end ``` 
 
 2. Nesse método eu defino os valores que dirão a posição inicial e sua movimentação, fora a chamada dos métodos 
   que vão realizar, de fato, toda a movimentação:
 
+  ```
    def run_walle_run(x, y, cardinal_position, action)
+  ```
 
 2.1 esse each percorre a string de movimentação contida em 'action' letra por letra:
   permitindo que eu use os movimentos nas suas respectivas ordens
@@ -83,8 +86,8 @@ CARDINAL_LETTERS = %w[N E S W].freeze
     elsif side == 'R'
       CARDINAL_LETTERS[@cardinal_position == 'W' ? 0 : find_cardinal_index + 1]
     end 
-  end
-```
+  end ```
+
 3.1 
     Eu acesso o ponto cardinal na constante da seguinte forma:
     Se ele vira pra esquerda ('L') então fica: 
@@ -111,22 +114,23 @@ CARDINAL_LETTERS = %w[N E S W].freeze
 
 5. Aqui ele evita que o rover passe do limite estipulado.
 eu pego o limite menos o valor atual de x ou y e decremento em x ou y   
+ 
  ``` 
   def you_shall_not_pass
     @x -= (@x - @limit_x)
     @y -= (@y - @limit_y)
-  end
-```
+  end ```
 6. Controla a posição cardinal, não deixando ela ficar nula em algum momento.
   se só houver ações de movimento nos comandos, então ele se move na direção em que foi implantado.
 
+```
   def actual_cardinal_position(actual_position) 
     if actual_position.nil?
       @cardinal_position
     else
       actual_position
     end
-  end
+  end ```
 7. e finalmente, aqui eu encontro o index (valor inteiro) do ponto cardeal atual e retorno pro metodo que gira o rover.
 
 ```  def find_cardinal_index
